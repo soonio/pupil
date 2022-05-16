@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/soonio/pupil/app/console"
 	"github.com/soonio/pupil/bootstrap"
 	"os"
 	"sort"
@@ -19,6 +20,8 @@ func main() {
 			{Name: "serve", Usage: "start http serve.", Action: bootstrap.Http},
 		},
 	}
+
+	console.Register(terminal)
 
 	sort.Sort(cli.FlagsByName(terminal.Flags))
 	sort.Sort(cli.CommandsByName(terminal.Commands))

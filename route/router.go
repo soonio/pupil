@@ -9,5 +9,5 @@ import (
 func Initialize() {
 	e := http.Server()
 
-	e.GET("/", api.Home.Version)
+	e.GET("/version", api.Home.Version)
 }
