@@ -1,7 +1,9 @@
 # PUPIL
 
-> 小学生来学习
+> 小学生
 
 ## Base On
-  - Cli
-  - Echo
+  - [Cli](https://github.com/urfave/cli)
+  - [Echo](https://github.com/labstack/echo)
+  - [Viper](https://github.com/spf13/viper)
+  - [Gorm](https://gorm.io/zh_CN/docs/)
