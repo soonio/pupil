@@ -2,3 +2,4 @@
 runtime
 vendor
 config.yaml
+try.go
