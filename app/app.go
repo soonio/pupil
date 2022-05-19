@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	Home = ""
+	Home = "" // 项目根目录
 
-	Config *config.Config
+	Config *config.Config // 项目配置
 )

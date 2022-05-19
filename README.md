@@ -1,6 +1,7 @@
 # PUPIL
 
 > 小学生
+> 做不到最好，做到尽可能好即可.
 
 ## Base On
   - [Cli](https://github.com/urfave/cli)
