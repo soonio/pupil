@@ -7,5 +7,5 @@ type home struct{}
 var Home = new(home)
 
 func (h *home) Version(c echo.Context) error {
-	return c.JSON(0, 1)
+	return c.JSON(200, 1)
 }
