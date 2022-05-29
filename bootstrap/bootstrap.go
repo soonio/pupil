@@ -3,8 +3,6 @@ package bootstrap
 import (
 	"github.com/soonio/pupil/app"
 	"github.com/soonio/pupil/bootstrap/internal"
-	"github.com/soonio/pupil/pkg/http"
-	"github.com/soonio/pupil/route"
 	"github.com/urfave/cli/v2"
 	"os"
 )
@@ -20,15 +18,5 @@ func Bootstrap(context *cli.Context) error {
 		return err
 	}
 	app.Home = dir
-
 	return internal.Viper(context.String("config"))
-}
-
-// Http 服务初始化
-func Http(c *cli.Context) error {
-	serve := http.Server()
-
-	route.Initialize()
-
-	return serve.Start(app.Config.Http.Addr)
 }

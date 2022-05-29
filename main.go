@@ -16,9 +16,6 @@ func main() {
 		Usage:  "小学生爱学习~",
 		Flags:  bootstrap.Flags,
 		Before: bootstrap.Bootstrap,
-		Commands: []*cli.Command{
-			{Name: "serve", Usage: "start http serve.", Action: bootstrap.Http},
-		},
 	}
 
 	console.Register(terminal)
