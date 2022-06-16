@@ -7,20 +7,22 @@ import (
 	"github.com/spf13/viper"
 )
 
-func Viper(config string) (err error) {
+func Viper(config string) {
 	v := viper.New()
 	v.SetConfigFile(config)
-	err = v.ReadInConfig()
-	if err != nil {
-		return err
+	err := v.ReadInConfig()
+	if err == nil {
+		v.WatchConfig()
+		v.OnConfigChange(func(e fsnotify.Event) {
+			if err = v.Unmarshal(&app.Config); err != nil {
+				fmt.Println("config file format error: " + err.Error())
+			} else {
+				fmt.Println("reload config success.")
+			}
+		})
+		err = v.Unmarshal(&app.Config)
 	}
-	v.WatchConfig()
-	v.OnConfigChange(func(e fsnotify.Event) {
-		if err = v.Unmarshal(&app.Config); err != nil {
-			fmt.Println("config file format error: " + err.Error())
-		} else {
-			fmt.Println("reload config success.")
-		}
-	})
-	return v.Unmarshal(&app.Config)
+	if err != nil {
+		panic(err)
+	}
 }

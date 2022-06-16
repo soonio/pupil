@@ -1,30 +1,40 @@
 package main
 
 import (
-	"fmt"
-	"github.com/soonio/pupil/app/console"
-	"github.com/soonio/pupil/bootstrap"
-	"os"
-	"sort"
+	"flag"
 
-	"github.com/urfave/cli/v2"
+	"github.com/soonio/pupil/app"
+	"github.com/soonio/pupil/bootstrap"
+	"github.com/soonio/pupil/pkg/http"
+	"github.com/soonio/pupil/pkg/validator"
+	"github.com/soonio/pupil/route"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
+// @title                 pupil
+// @version               1.0
+// @schemes               https
+// @host                  https://pupil.localhost.com
 func main() {
-	terminal := &cli.App{
-		Name:   "pupil",
-		Usage:  "小学生爱学习~",
-		Flags:  bootstrap.Flags,
-		Before: bootstrap.Bootstrap,
-	}
 
-	console.Register(terminal)
+	var c = flag.String("c", "config.yaml", "the config file")
+	flag.Parse()
 
-	sort.Sort(cli.FlagsByName(terminal.Flags))
-	sort.Sort(cli.CommandsByName(terminal.Commands))
+	bootstrap.Bootstrap(*c)
 
-	err := terminal.Run(os.Args)
+	var e = echo.New()
+	e.Validator = validator.New()
+	e.JSONSerializer = &http.JsonSerializer{}
+	e.HideBanner = true
+	e.HidePort = true
+	e.Use(middleware.Recover())
+
+	route.Register(e)
+
+	err := e.Start(app.Config.Http.Addr)
 	if err != nil {
-		fmt.Println(err.Error())
+		panic(err)
 	}
 }
