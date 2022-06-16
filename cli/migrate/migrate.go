@@ -18,7 +18,7 @@ import (
 )
 
 //迁移文件所在相对目录
-const dir = "database/migrations"
+const dir = "database"
 
 func Version(cli *cli.Context) error {
 	version, dirty, err := driver().Version()

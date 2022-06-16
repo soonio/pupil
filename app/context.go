@@ -8,10 +8,8 @@ import (
 )
 
 var (
-	Home = "" // 项目根目录
-
-	Config *config.Config // 项目配置
-
-	DB    *gorm.DB // 存储多个DB对象
-	Redis *redis.Client
+	Home   string         // 项目根目录
+	Config *config.Config // 配置
+	DB     *gorm.DB       // DB对象
+	Redis  *redis.Client  // reid
 )
