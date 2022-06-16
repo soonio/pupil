@@ -2,3 +2,24 @@
 http:
   addr: ':4321'
 
+
+db:
+  config: 'charset=utf8mb4&parseTime=True&loc=Local'
+  path: '127.0.0.1:3306'
+    db-name: 'demo'
+  username: 'root'
+  password: 'DB2022'
+  max-idle-conns: 10
+  max-open-conns: 100
+
+#缓存配置
+redis:
+  db: 0
+  addr: '127.0.0.1:6379'
+  password: 'Cache2022'
+
+# jwt
+jwt:
+  signing-key: 'KeyString'
+  duration: 2592000
+  issuer: 'pupil'
