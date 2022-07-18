@@ -1,7 +1,7 @@
 # PUPIL
 
-> 小学生
-> 做不到最好，做到尽可能好即可.
+> 小学生  
+> easy mode.
 
 ## Base On
   - [Cli](https://github.com/urfave/cli)
