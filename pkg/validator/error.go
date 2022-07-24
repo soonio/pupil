@@ -3,6 +3,7 @@ package validator
 import (
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
+	"net/http"
 	"strings"
 )
 
@@ -10,6 +11,11 @@ type Error struct {
 	errs validator.ValidationErrors
 	uni  *ut.UniversalTranslator
 	lang string
+}
+
+// LangInHeader 从请求头中获取多语言设置
+func (e *Error) LangInHeader(r *http.Request) *Error {
+	return e.Lang(r.Header.Get("Accept-Language"))
 }
 
 // Lang 设置使用的目标翻译语言

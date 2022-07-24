@@ -1,8 +1,11 @@
 package api
 
 import (
-	"github.com/labstack/echo/v4"
 	"net/http"
+
+	"github.com/soonio/pupil/pkg/validator"
+
+	"github.com/labstack/echo/v4"
 )
 
 // 业务状态码定义需要从600之后开始
@@ -65,4 +68,12 @@ func Failure(c echo.Context, httpCode int, msg ...string) error {
 	} else {
 		return c.JSON(http.StatusOK, &Response{httpCode, m, nil})
 	}
+}
+
+// ParameterError 参数错误时的便捷响应方法
+func ParameterError(c echo.Context, err error) error {
+	if e, ok := err.(*validator.Error); ok {
+		return Failure(c, http.StatusUnprocessableEntity, e.LangInHeader(c.Request()).Error())
+	}
+	return Failure(c, http.StatusUnprocessableEntity, err.Error())
 }

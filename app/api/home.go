@@ -1,10 +1,11 @@
 package api
 
 import (
-	"github.com/labstack/echo/v4"
-	"github.com/soonio/pupil/app/types"
-	"github.com/soonio/pupil/pkg/validator"
 	"net/http"
+
+	"github.com/soonio/pupil/app/types"
+
+	"github.com/labstack/echo/v4"
 )
 
 type home struct{}
@@ -29,7 +30,9 @@ func (h *home) ValidateMultiLangError(c echo.Context) error {
 	_ = c.Bind(p)
 
 	if err := c.Validate(p); err != nil {
-		return Failure(c, http.StatusUnprocessableEntity, err.(*validator.Error).Lang(validator.Language(c)).Error())
+		// 对于错误复杂的处理方式，可以封装在Failure方法中
+		//return Failure(c, http.StatusUnprocessableEntity, err.(*validator.Error).Lang(validator.Language(c)).Error())
+		return ParameterError(c, err)
 	}
 
 	return Success(c, p)
