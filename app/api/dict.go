@@ -1,6 +1,7 @@
 package api
 
 import (
+	"github.com/soonio/pupil/pkg/validator"
 	"net/http"
 
 	"github.com/soonio/pupil/app/logic"
@@ -57,8 +58,9 @@ func (i *dictApi) List(c echo.Context) error {
 func (i *dictApi) Save(c echo.Context) error {
 	p := &types.AdminDictSaveRequest{}
 	_ = c.Bind(p)
+
 	if err := c.Validate(p); err != nil {
-		return Failure(c, http.StatusUnprocessableEntity, err.Error())
+		return Failure(c, http.StatusUnprocessableEntity, err.(*validator.Error).Lang(validator.Language(c)).Error())
 	}
 
 	if err := logic.Dict.Save(p.K, p.V); err != nil {
