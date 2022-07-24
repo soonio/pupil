@@ -20,7 +20,7 @@ type dictApi struct{}
 // @Param    token  header    string                     true  "认证Token"
 // @Param    key    path      int                        true  "键"
 // @Success  200    {object}  api.Response{data=string}  "值"
-// @Router   /app/dict/{key} [GET]
+// @Router   /dict/{key} [GET]
 func (i *dictApi) Get(c echo.Context) error {
 	v, err := logic.Dict.Get(c.Param("key"))
 	if err != nil {

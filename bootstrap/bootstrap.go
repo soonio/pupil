@@ -10,6 +10,7 @@ func Bootstrap(config string) {
 	// 未使用recover()，异常信息会直接抛出，便于在启动时即使发现问题
 	internal.Workdir()
 	internal.Viper(config)
+	internal.Gorm()
 	internal.Redis()
 	internal.Cron()
 }

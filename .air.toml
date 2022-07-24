@@ -3,7 +3,7 @@ testdata_dir = "testdata"
 tmp_dir = "runtime/air"
 
 [build]
-  bin = "./runtime/air/main serve"
+  bin = "./runtime/air/main"
   cmd = "go build -ldflags \"-s -w\" -trimpath  -o ./runtime/air/main ."
   delay = 1000
   exclude_dir = ["assets", "runtime", "vendor", "testdata", "docs"]
