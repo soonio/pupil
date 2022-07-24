@@ -20,24 +20,22 @@ func New(r *http.Request, max ...int) *Paginator {
 	vs := r.URL.Query()
 	if vs.Has("page") {
 		page, _ := strconv.ParseInt(vs.Get("page"), 0, 0)
-		p.Page = int(page)
-	}
-	if vs.Has("size") {
-		size, _ := strconv.ParseInt(vs.Get("size"), 0, 0)
-		p.Size = int(size)
+		if page > 0 {
+			p.Page = int(page)
+		}
 	}
 
-	if p.Page < 1 {
-		p.Page = 1
+	if vs.Has("size") {
+		size, _ := strconv.ParseInt(vs.Get("size"), 0, 0)
+		if size > 0 {
+			p.Size = int(size)
+		}
 	}
 
 	if len(max) > 0 {
 		if p.Size > max[0] {
 			p.Size = max[0]
 		}
-	}
-	if p.Size < 1 {
-		p.Size = 1
 	}
 
 	return &p

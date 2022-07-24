@@ -16,6 +16,7 @@ func Touch(filename string) error {
 	return f.Close()
 }
 
+// Or 三元表达式
 func Or[v any](assert bool, yes, no v) v {
 	if assert {
 		return yes
