@@ -9,6 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Gorm 初始化Gorm客户端
 func Gorm() {
 	app.DB = connect(app.Config.DB)
 }

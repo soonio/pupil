@@ -1,13 +1,13 @@
 # PUPIL
 
-> 小学生
-> 做不到最好，做到尽可能好即可.
+> Easy mode for working.
 
 ## Base On
   - [Cli](https://github.com/urfave/cli)
   - [Echo](https://github.com/labstack/echo)
   - [Viper](https://github.com/spf13/viper)
   - [Gorm](https://gorm.io/zh_CN/docs/)
+  - [Crontab](https://github.com/robfig/cron)
 
 ## Tools
   - [air](https://github.com/cosmtrek/air)

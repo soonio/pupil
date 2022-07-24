@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Viper 初始化配置解析工具
 func Viper(config string) {
 	v := viper.New()
 	v.SetConfigFile(config)
@@ -14,6 +15,7 @@ func Viper(config string) {
 	if err == nil {
 		v.WatchConfig()
 		v.OnConfigChange(func(e fsnotify.Event) {
+			// TIPS: 日志会打印到控制台(或者进程监控的日志中)
 			if err = v.Unmarshal(&app.Config); err != nil {
 				fmt.Println("config file format error: " + err.Error())
 			} else {

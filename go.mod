@@ -10,11 +10,11 @@ require (
 	github.com/golang-migrate/migrate/v4 v4.15.2
 	github.com/json-iterator/go v1.1.12
 	github.com/labstack/echo/v4 v4.7.2
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/spf13/viper v1.11.0
 	github.com/urfave/cli/v2 v2.6.0
 	gorm.io/driver/mysql v1.3.4
 	gorm.io/gorm v1.23.4
-	moul.io/zapgorm2 v1.1.3
 )
 
 require (
@@ -48,8 +48,6 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
-	go.uber.org/multierr v1.7.0 // indirect
-	go.uber.org/zap v1.21.0 // indirect
 	golang.org/x/crypto v0.0.0-20220513210258-46612604a0f9 // indirect
 	golang.org/x/net v0.0.0-20220513224357-95641704303c // indirect
 	golang.org/x/sys v0.0.0-20220513210249-45d2b4557a2a // indirect

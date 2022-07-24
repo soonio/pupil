@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// Workdir 初始化工作目录
 func Workdir() {
 	dir, err := os.Getwd()
 	if err != nil {

@@ -9,6 +9,7 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
+// Redis 初始化Redis客户端
 func Redis() {
 	config := app.Config.Redis
 	client := redis.NewClient(&redis.Options{
