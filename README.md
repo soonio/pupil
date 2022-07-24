@@ -7,10 +7,13 @@
   - [Echo](https://github.com/labstack/echo)
   - [Viper](https://github.com/spf13/viper)
   - [Gorm](https://gorm.io/zh_CN/docs/)
+  - [Redis](https://github.com/go-redis/redis)
+  - [Validator](https://github.com/go-playground/validator)
 
 ## Tools
-  - [air](https://github.com/cosmtrek/air)
-  - [migrate](https://github.com/golang-migrate/migrate)
+  - [swag](https://github.com/swaggo/swag) swagger文档生成
+  - [air](https://github.com/cosmtrek/air) 开发环境热重启
+  - [migrate](https://github.com/golang-migrate/migrate) 数据表迁移
 
 ## 需要解决的问题
 

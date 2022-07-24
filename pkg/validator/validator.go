@@ -7,39 +7,12 @@ import (
 	"github.com/go-playground/validator/v10"
 	entranslations "github.com/go-playground/validator/v10/translations/en"
 	zhtranslations "github.com/go-playground/validator/v10/translations/zh"
-	"strings"
 )
 
-type Error struct {
-	errs validator.ValidationErrors
-	uni  *ut.UniversalTranslator
-	lang string
-}
-
-func (e *Error) Lang(lang string) error {
-	e.lang = lang
-	return e
-}
-
-func (e *Error) Error() string {
-	var tips = make([]string, 0)
-
-	var t ut.Translator
-	var found bool
-	if t, found = e.uni.FindTranslator(e.lang); !found {
-		t, _ = e.uni.GetTranslator("en")
-	}
-
-	for _, tip := range e.errs.Translate(t) {
-		tips = append(tips, tip)
-	}
-
-	return strings.Join(tips, ", ")
-}
-
 type Validator struct {
-	validator *validator.Validate
-	uni       *ut.UniversalTranslator
+	validator   *validator.Validate
+	uni         *ut.UniversalTranslator
+	defaultLang string
 }
 
 // Validate 验证方法
@@ -47,13 +20,17 @@ type Validator struct {
 func (cv *Validator) Validate(i any) error {
 	var e = cv.validator.Struct(i)
 	if errs, ok := e.(validator.ValidationErrors); ok {
-		return &Error{errs: errs, uni: cv.uni, lang: "en"}
+		return &Error{errs: errs, uni: cv.uni, lang: cv.defaultLang}
 	}
 	return e
 }
 
-func New() *Validator {
+func New(opt ...func(*Validator) *Validator) *Validator {
 	v := new(Validator)
+	for i := 0; i < len(opt); i++ {
+		opt[i](v)
+	}
+
 	v.validator = validator.New()
 
 	enLang := en.New()

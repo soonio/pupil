@@ -3,3 +3,4 @@ runtime
 vendor
 config.yaml
 try.go
+docs

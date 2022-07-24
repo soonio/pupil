@@ -13,10 +13,10 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
-// @title                 pupil
-// @version               1.0
-// @schemes               https
-// @host                  https://pupil.localhost.com
+// @title   pupil
+// @version 1.0
+// @schemes https
+// @host    https://pupil.localhost.com
 func main() {
 
 	var c = flag.String("c", "config.yaml", "the config file")
@@ -25,7 +25,7 @@ func main() {
 	bootstrap.Bootstrap(*c)
 
 	var e = echo.New()
-	e.Validator = validator.New()
+	e.Validator = validator.New(validator.WithDefaultLanguage("zh"))
 	e.JSONSerializer = &http.JsonSerializer{}
 	e.HideBanner = true
 	e.HidePort = true
