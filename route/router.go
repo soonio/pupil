@@ -6,6 +6,7 @@ import (
 )
 
 func Register(e *echo.Echo) {
+	// 路由采用显示路由，所有的路由都标识清楚，便于查找
 	e.GET("/version", api.Home.Version)
 
 	e.GET("/dict/:key", api.Dict.Get)
