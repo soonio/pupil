@@ -7,7 +7,6 @@
   - [Echo](https://github.com/labstack/echo)
   - [Viper](https://github.com/spf13/viper)
   - [Gorm](https://gorm.io/zh_CN/docs/)
-  - [Crontab](https://github.com/robfig/cron)
 
 ## Tools
   - [air](https://github.com/cosmtrek/air)
