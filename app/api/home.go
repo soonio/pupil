@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"github.com/soonio/pupil/pkg/erro"
 	"net/http"
 
@@ -70,8 +69,6 @@ func (h *home) Error(c echo.Context) error {
 
 	if err != nil {
 		if err, ok := err.(*erro.Erro); ok {
-			fmt.Println("error:", err.Error())
-			fmt.Println("path:", err.On())
 			return c.JSON(http.StatusOK, &Response{
 				StatusOperateFailure,
 				"错误消息",
