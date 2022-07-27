@@ -10,25 +10,13 @@ import (
 
 // 业务状态码定义需要从600之后开始
 const (
-	StatusOK                = 0
-	StatusOperateFailure    = 655
-	StatusGoodsNotExists    = 10404 // 10xxx商品相关
-	StatusOrderNotExists    = 11404 // 11xxx订单相关
-	StatusOrderCantPay      = 11405
-	StatusOrderNotMine      = 11406
-	StatusOrderPayTimeout   = 11407
-	StatusOrderNeedReceiver = 11655
+	StatusOK             = 0
+	StatusOperateFailure = 655
 )
 
 var TextCode = map[int]string{
-	StatusOK:                "success",
-	StatusOperateFailure:    "操作失败",
-	StatusGoodsNotExists:    "商品不存在",
-	StatusOrderNotExists:    "订单不存在",
-	StatusOrderCantPay:      "非待支付订单",
-	StatusOrderNotMine:      "订单不属于当前用户",
-	StatusOrderPayTimeout:   "订单支付时间超时，不再允许支付",
-	StatusOrderNeedReceiver: "订单需要收货人信息",
+	StatusOK:             "success",
+	StatusOperateFailure: "操作失败",
 }
 
 func StatusText(code int) string {

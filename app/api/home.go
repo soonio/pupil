@@ -1,6 +1,8 @@
 package api
 
 import (
+	"fmt"
+	"github.com/soonio/pupil/pkg/erro"
 	"net/http"
 
 	"github.com/soonio/pupil/app/types"
@@ -56,4 +58,30 @@ func (h *home) ValidateDefaultError(c echo.Context) error {
 
 	return Success(c, p)
 
+}
+
+// Error
+// @tags    错误
+// @Summary 使用自定义错误
+// @Success 200   {object} api.Response{} ""
+// @Router  /erro [GET]
+func (h *home) Error(c echo.Context) error {
+	err := erro.New("some error.")
+
+	if err != nil {
+		if err, ok := err.(*erro.Erro); ok {
+			fmt.Println("error:", err.Error())
+			fmt.Println("path:", err.On())
+			return c.JSON(http.StatusOK, &Response{
+				StatusOperateFailure,
+				"错误消息",
+				map[string]string{
+					"msg":    err.Error(),
+					"caller": err.On(),
+				}})
+		}
+		return Failure(c, http.StatusInternalServerError, err.Error())
+	}
+
+	return Success(c)
 }
